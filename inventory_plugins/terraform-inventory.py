@@ -44,7 +44,7 @@ class InventoryModule(BaseInventoryPlugin):
             raise AnsibleParserError(
                 'All correct options required: {}'.format(e))
         
-        tfstate_dir=os.path.join('tf/ovh')
+        tfstate_dir=os.path.join('tf/openstack')
         tfstate_cmd=subprocess.run("terraform state pull",cwd=tfstate_dir, capture_output=True, shell=True, check=True, text=True)
         tfstate=json.loads(tfstate_cmd.stdout)
            

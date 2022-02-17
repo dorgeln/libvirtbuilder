@@ -14,7 +14,7 @@ variable "ansible_user" {
     type        = string
 }
 
-resource "openstack_compute_instance_v2" ovhinstance {
+resource "openstack_compute_instance_v2" osinstance {
    name        = var.instance_name 
    provider    = openstack
    region = var.region
@@ -25,7 +25,7 @@ resource "openstack_compute_instance_v2" ovhinstance {
     name      = "Ext-Net" 
    }
    metadata = {
-     group = "ovh"
+     group = "openstack"
      ansible_user = var.ansible_user
    }
 }

@@ -60,12 +60,12 @@ export TF_VAR_flavor_name="d2-8"
 ## Set Instance Name
 export TF_VAR_instance_name="myfirstinstance"
 
-## Deploy OVH Instance with terraform manualy
+## Deploy OpenStack Instance with terraform manualy
 
-cd tf/ovh
+cd tf/openstack
 terraform init
 terraform plan
-terraform apply
+terraform apply -auto-approve
 
 ### Show deployed server
 openstack server list

@@ -42,6 +42,12 @@
     dest: "/var/lib/libvirt/images/windows"
     mode: '0440'
 
+- name: Prepare Debian 11 generic image
+  become: yes
+  ansible.builtin.shell: |
+    qemu-img convert -f qcow2 -O qcow2 /var/lib/libvirt/images/templates/debian-11-generic-amd64-20220121-894.qcow2 /var/lib/libvirt/images/debian11/debian11generic.qcow2
+    qemu-img resize /var/lib/libvirt/images/debian11/debian11generic.qcow2 20G
+    virt-customize -a /var/lib/libvirt/images/debian11/debian11generic.qcow2 --root-password password:debian 
 
 
 # - name: Get Debian 11 nocloud

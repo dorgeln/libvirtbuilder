@@ -134,3 +134,8 @@ ansible-inventory --list
 
 ## Test ansible login 
 ansible all -m ping
+
+## Terraform Libvirt 
+cd tf/libvirt
+terraform init
+

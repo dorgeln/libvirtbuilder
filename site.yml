@@ -1,0 +1,14 @@
+---
+- hosts:
+    - infraserver
+  roles:
+    - system
+    - firewalld
+    - docker
+    - libvirt
+    - tpm
+    # - kind
+    - cockpit
+    - cloudimages    
+  gather_facts: True
+ 

@@ -1,0 +1,36 @@
+- name: Install libvirt
+  become: yes
+  apt:
+    name: 
+        - qemu
+        - qemu-system
+        - qemu-utils
+        - qemu-block-extra
+        - libvirt-daemon-system
+        - libvirt-clients
+        - cloud-image-utils
+        - dnsmasq
+        - git
+        - genisoimage
+        - libguestfs-tools
+        - libosinfo-bin
+        - python3-libvirt
+        - python3-lxml
+        - virtinst
+        - bridge-utils
+        - ovmf
+        - cloud-utils
+        - whois
+        - spice-html5
+        - spice-vdagent
+        - novnc
+    default_release: bullseye-backports
+    state: present
+    update_cache: no
+
+- name: Enable libvirtd
+  service:
+    name: libvirtd
+    state: started
+    enabled: true
+

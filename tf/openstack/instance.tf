@@ -25,7 +25,7 @@ resource "openstack_compute_instance_v2" osinstance {
     name      = "Ext-Net" 
    }
    metadata = {
-     group = "openstack"
+     group = "infraserver"
      ansible_user = var.ansible_user
    }
 }

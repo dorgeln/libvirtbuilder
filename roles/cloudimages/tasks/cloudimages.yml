@@ -1,0 +1,61 @@
+- name: Create Template directory
+  become: yes
+  file:
+    path: "/var/lib/libvirt/images/templates"
+    owner: "root"
+    group: "root"
+    state: directory
+
+- name: Create Windows directory
+  become: yes
+  file:
+    path: "/var/lib/libvirt/images/windows"
+    owner: "root"
+    group: "root"
+    state: directory
+
+- name: Get Centos 8
+  become: yes 
+  get_url:
+    url: "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210603.0.x86_64.qcow2"
+    dest: "/var/lib/libvirt/images/templates"
+    mode: '0440'
+
+- name: Get Ubuntu 20.04 LTS
+  become: yes 
+  get_url:
+    url: "http://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+    dest: "/var/lib/libvirt/images/templates"
+    mode: '0440'
+
+- name: Get Debian 11 generic
+  become: yes 
+  get_url:
+    url: "https://cloud.debian.org/cdimage/cloud/bullseye/20220121-894/debian-11-generic-amd64-20220121-894.qcow2"
+    dest: "/var/lib/libvirt/images/templates"
+    mode: '0440'
+
+- name: Get virtio-win
+  become: yes 
+  get_url:
+    url: "https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.215-2/virtio-win-0.1.215.iso"
+    dest: "/var/lib/libvirt/images/windows"
+    mode: '0440'
+
+
+
+# - name: Get Debian 11 nocloud
+#   become: yes 
+#   get_url:
+#     url: "https://cloud.debian.org//cdimage/cloud/bullseye/20220121-894/debian-11-nocloud-amd64-20220121-894.qcow2"
+#     dest: "/var/lib/libvirt/images/templates/debian-11-nocloud-amd64.qcow2"
+#     mode: '0440'
+
+
+# - name: Get Debian 11 genericcloud
+#   become: yesssh-a 
+#   get_url:
+#     url: "https://cloud.debian.org/images/cloud/bullseye/20220121-894/debian-11-genericcloud-amd64-20220121-894.qcow2"
+#     dest: "/var/lib/libvirt/images/templates/debian-11-genericcloud-amd64.qcow2"
+#     mode: '0440'
+

@@ -20,6 +20,9 @@ id_rsa.pub
 # Python
 ***.pyc
 
+# Testing
+inventory/testing.yml
+
 # Terraform
 **/.terraform
 **/.terraform.lock.hcl

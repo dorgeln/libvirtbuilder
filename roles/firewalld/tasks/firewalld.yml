@@ -1,0 +1,14 @@
+- name: Install firewalld
+  become: yes
+  apt:
+    name: 
+        - firewalld 
+    state: present
+    update_cache: no
+
+- name: Enable firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: true
+

@@ -1,0 +1,4 @@
+---
+- name: Configure libvirt
+  import_tasks: libvirt.yml
+  tags: libvirt

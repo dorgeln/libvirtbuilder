@@ -34,7 +34,6 @@ export OS_USERNAME="user-XXXXXXXXX"
 export OS_PASSWORD="XXXXXXXXX"
 export TF_VAR_keypair_name="MyUniqueName"
 
-export TF_VAR_ansible_user="ubuntu"
 export TF_VAR_region=$OS_REGION_NAME
 export TF_VAR_auth_url=$OS_AUTH_URL
 export TF_VAR_user_name=$OS_USERNAME
@@ -116,6 +115,10 @@ ssh -i id_rsa debian@Ext-Net-IP
 
 ### Ubuntu
 ssh -i id_rsa debian@Ext-Net-IP
+
+
+### Copy local key to host
+ssh-copy-id -i id_rsa.pub root@hostname
 
 ## Fixing "Key pair  already exists" error
 

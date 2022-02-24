@@ -28,6 +28,24 @@
     state: present
     update_cache: no
 
+- name: Add Ansible user to libvirt groups
+  become: yes
+  user:
+    name: "{{ansible_user}}"
+    groups: "{{item}}"
+  loop:
+    - libvirt
+    - libvirt-qemu
+
+
+- name:  Configure libvirt polkit
+  become: yes
+  template:
+    src: "50-libvirt.rules"
+    dest: "/etc/polkit-1/localauthority/50-local.d/50-libvirt.rules"
+    mode: '0755'
+
+
 - name: Enable libvirtd
   service:
     name: libvirtd

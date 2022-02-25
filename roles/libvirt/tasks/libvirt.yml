@@ -28,15 +28,19 @@
     state: present
     update_cache: no
 
-- name: Add Ansible user to libvirt groups
+- name: Add Ansible user to libvirt group
   become: yes
   user:
     name: "{{ansible_user}}"
-    groups: "{{item}}"
-  loop:
-    - libvirt
-    - libvirt-qemu
+    groups: libvirt
+    append: yes
 
+- name: Add Ansible user to libvirt-qemu group
+  become: yes
+  user:
+    name: "{{ansible_user}}"
+    groups: libvirt-qemu
+    append: yes
 
 - name:  Configure libvirt polkit
   become: yes
@@ -45,6 +49,31 @@
     dest: "/etc/polkit-1/localauthority/50-local.d/50-libvirt.rules"
     mode: '0755'
 
+- name:  Configure qemu
+  become: yes
+  template:
+    src: "qemu.conf"
+    dest: "/etc/libvirt/qemu.conf"
+    mode: '0600'
+
+
+- name: Create cloud-init directory
+  become: yes
+  file:
+    path: "/var/lib/libvirt/cloud-init"
+    owner: "root"
+    group: "root"
+    state: directory
+
+- name:  Create Cloud-Init Config
+  become: yes
+  template:
+    src: "{{item}}"
+    dest: "/var/lib/libvirt/cloud-init/{{item}}"
+    mode: '0644'
+  loop:
+    - meta_data.tpl
+    - user_data.tpl
 
 - name: Enable libvirtd
   service:
